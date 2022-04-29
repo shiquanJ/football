@@ -1,0 +1,175 @@
+<html>
+<head>
+	<meta title="百年后足球对阵表">
+	<link rel="stylesheet" href="/css/font.css">
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/bootstrap.css">
+	<script type="text/javascript" src="/js/jquery.min.js"></script>
+	<script type="text/javascript" src="/js/drag.js"></script>
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-2">
+				<div class="team text-center">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="text-title">
+									A组阵容
+								</div>
+							</div>
+							<div class="col-lg-6 col-sm-2 item">
+								<div class="text-default">세권</div>
+								<!-- <img class="img-h80" src="./images/member/shiquan.jpg"> -->
+							</div>
+							<div class="col-lg-6 col-sm-2 item">
+								<div class="text-default">동휘</div>
+							</div>
+							<div class="col-lg-6 col-sm-2 item">
+								<div class="text-default">현철</div>
+							</div>
+							<div class="col-lg-6 col-sm-2 item">
+								<div class="text-default">민청</div>
+							</div>
+							<div class="col-lg-6 col-sm-2 item">
+								<div class="text-default">김필</div>
+							</div>
+							<div class="col-lg-6 col-sm-2 item">
+								<div class="text-default">관우</div>
+							</div>
+							<div class="col-lg-6 col-sm-2 item">
+								<div class="text-default">김주</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="text-title">
+									B组阵容
+								</div>
+							</div>
+							<div class="col-lg-6 col-sm-2 item">
+								<div class="text-default">은성</div>
+							</div>
+							<div class="col-lg-6 col-sm-2 item">
+								<div class="text-default">룡해</div>
+							</div>
+							<div class="col-lg-6 col-sm-2 item">
+								<div class="text-default">광호</div>
+							</div>
+							<div class="col-lg-6 col-sm-2 item">
+								<div class="text-default">현우</div>
+							</div>
+							<div class="col-lg-6 col-sm-2 item">
+								<div class="text-default">성준</div>
+							</div>
+							<div class="col-lg-6 col-sm-2 item">
+								<div class="text-default">주호</div>
+							</div>
+							<div class="col-lg-6 col-sm-2 item">
+								<div class="text-default">백업</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="text-title">
+									C组阵容
+								</div>
+							</div>
+							<div class="col-lg-6 col-sm-2 item">
+								<div class="text-default">림용</div>
+							</div>
+							<div class="col-lg-6 col-sm-1 item">
+								<div class="text-default">룡호</div>
+							</div>
+							<div class="col-lg-6 col-sm-2 item">
+								<div class="text-default">룡호형친구</div>
+							</div>
+							<div class="col-lg-6 col-sm-2 item">
+								<div class="text-default">현성</div>
+							</div>
+							<div class="col-lg-6 col-sm-2 item">
+								<div class="text-default">길찬</div>
+							</div>
+							<div class="col-lg-6 col-sm-2 item">
+								<div class="text-default">성일</div>
+							</div>
+							<div class="col-lg-6 col-sm-1 item">
+								<div class="text-default">호걸</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="col-lg-10">
+				<div class="background text-center">
+					<img class="visible-lg-inline" alt="" src="/images/bg.jpeg">
+					<img class="visible-sm-inline" alt="" src="/images/bg.png">
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+        <script type="text/javascript">
+        document.querySelectorAll('.item').forEach(function(element) {
+            new agnosticDraggable.Draggable(element,{
+                appendTo: 'body',
+                connectToSortable: '.sortable',
+                cursor: 'move',
+                distance: 10,
+                helper: 'original',
+                opacity: .5,
+            })
+        });
+        document.querySelectorAll('.item').forEach(function(element) {
+        	var oDiv = element;
+      	  var disX, moveX, L, T, starX, starY, starXEnd, starYEnd;
+      	  oDiv.addEventListener('touchstart', function (e) {
+      	    e.preventDefault();//阻止触摸时页面的滚动，缩放
+      	   
+      	    disX = Number($(this).css("left").split("px")[0]);
+      	    disY = Number($(this).css("top").split("px")[0]);
+      	    //手指按下时的坐标
+      	    starX = e.touches[0].clientX;
+      	    starY = e.touches[0].clientY;
+      	    //console.log(disX);
+      	  });
+      	  oDiv.addEventListener('touchmove', function (e) {
+      	    L = (e.touches[0].clientX - starX)+disX;
+      	    T = (e.touches[0].clientY - starY)+disY;
+      	    //移动时 当前位置与起始位置之间的差值
+      	    starXEnd = e.touches[0].clientX - starX;
+      	    starYEnd = e.touches[0].clientY - starY;
+      	    console.log(T);
+      	    /* if (L < 0) {//限制拖拽的X范围，不能拖出屏幕
+      	      L = 0;
+      	    }
+      	    else if (L > document.documentElement.clientWidth - this.offsetWidth) {
+      	      L = document.documentElement.clientWidth - this.offsetWidth;
+      	    }
+      	   
+      	    if (T < 0) {//限制拖拽的Y范围，不能拖出屏幕
+      	      T = 0;
+      	    }
+      	    else if (T > document.documentElement.clientHeight - this.offsetHeight) {
+      	      T = document.documentElement.clientHeight - this.offsetHeight;
+      	    } */
+      	    moveX = L + 'px';
+      	    moveY = T + 'px';
+      	   
+      	    this.style.left = moveX;
+      	    this.style.top = moveY;
+      	  });
+      	  window.addEventListener('touchend', function (e) {
+      	    //alert(parseInt(moveX))
+      	    //判断滑动方向
+      	  });
+        });
+        window.onload = function () {
+        	}
+        </script>
+        
+</body>
+</html>
