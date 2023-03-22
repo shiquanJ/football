@@ -57,13 +57,13 @@
 }
 @media (min-width: 768px) {
 	.team{
-		height:calc(30%);
+		height:calc(20%);
 	}
 	.item{
 		height:60px;
 	}
 	.background img{
-		height:calc(70%);
+		height:calc(80%);
 	}
 	.text-title{
 		font-size: 22px;
